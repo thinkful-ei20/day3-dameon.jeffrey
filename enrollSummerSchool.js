@@ -1,15 +1,10 @@
 'use strict';
 
 function enrollInSummerSchool(students) {
-  const results = [];
   for(let i = 0; i < students.length; i++) {
-    results.push({
-      name: students[i].name,
-      status: 'In Summer school',
-      course: students[i].course
-    });
+    students[i].status = 'In Summer school';
   }
-  return results;
+  return students;
 }
 
 const studentData = [
