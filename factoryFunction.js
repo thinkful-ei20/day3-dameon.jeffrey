@@ -1,50 +1,57 @@
 'use strict';
 
 function createCharacter(name,nickname,race,origin,attack,defense, weapon){
-  return  {
-    name:name,
-    nickname: nickname,
-    race : race,
-    origin : origin,
-    attack : attack,
-    defense : defense,
-    weapon: weapon,
-    describe: function(){
-      return `${this.name} is a ${this.race} from ${this.origin} and uses ${weapon}`;
-    },
-    evaluateFight : function(character){
-      let oppDmg = character.defense > this.attack ? 0 :  this.attack - character.defense ;
-      let myDmg = this.defense > character.attack ? 0 : character.attack - this.defense;
-      return `Your opponent takes ${oppDmg} damage and you receive ${myDmg} damage`;
-    }
-  };
+  
+  this.name = name,
+  this.nickname = nickname,
+  this.race = race,
+  this.origin = origin,
+  this.attack = attack,
+  this.defense = defense,
+  this.weapon = weapon;
+
+  // evaluateFight : function(character){
+  //   let oppDmg = character.defense > this.attack ? 0 :  this.attack - character.defense ;
+  //   let myDmg = this.defense > character.attack ? 0 : character.attack - this.defense;
+  //   return `Your opponent takes ${oppDmg} damage and you receive ${myDmg} damage`;
+  // }
 }
 
+createCharacter.prototype.describe = function(){
+  return `${this.name} is a ${this.race} from ${this.origin} and uses ${this.weapon}`;
+};
+createCharacter.prototype.evaluateFight = function(character){
+  let oppDmg = character.defense > this.attack ? 0 :  this.attack - character.defense ;
+  let myDmg = this.defense > character.attack ? 0 : character.attack - this.defense;
+  return `Your opponent takes ${oppDmg} damage and you receive ${myDmg} damage`;
+};
 
-
+//let bilbo = new createCharacter('bilbo','baggins','Hobbit','the shire',2,1, 'Ring');
 
 let characters = [
-  createCharacter('bilbo','baggins','Hobbit','the shire',2,1, 'Ring'),
-  createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth',10,6, 'Wizard Staff'),
-  createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2, 'String and Barrow Blade'),
-  createCharacter('Aragonrn son of Arathorn','aragorn','Man','Dunnedain',6,8, 'Anduril'),
-  createCharacter('Legolas','legolas','Elf','Woodland Realm',8,5, 'Bow and Arrow')];
+  new createCharacter('bilbo','baggins','Hobbit','the shire',2,1, 'Ring'),
+  new createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth',10,6, 'Wizard Staff'),
+  new createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2, 'String and Barrow Blade'),
+  new createCharacter('Aragonrn son of Arathorn','aragorn','Man','Dunnedain',6,8, 'Anduril'),
+  new createCharacter('Legolas','legolas','Elf','Woodland Realm',8,5, 'Bow and Arrow')
+];
+console.log(characters[0]);
+console.log(characters[0].describe());
+console.log(characters[0].evaluateFight('Legolas'));
 
 
+// //characters.push(createCharacter('dameon','mendoza','human','earth',100,100, 'fists'));
+// let foundChar = characters.find(function(character){
+//   return  character.nickname === 'aragorn';
+// });
 
+// console.log(foundChar.describe());
 
-characters.push(createCharacter('dameon','mendoza','human','earth',100,100, 'fists'));
-let foundChar = characters.find(function(character){
-  return  character.nickname === 'aragorn';
-});
+// let hobbits = characters.filter(character => character.race === 'Hobbit');
+// //console.log(hobbits);
 
-console.log(foundChar.describe());
-
-let hobbits = characters.filter(character => character.race === 'Hobbit');
-//console.log(hobbits);
-
-let attackers = characters.filter(character => character.attack > 5);
-//console.log(attackers);
+// let attackers = characters.filter(character => character.attack > 5);
+// //console.log(attackers);
 
 
 
