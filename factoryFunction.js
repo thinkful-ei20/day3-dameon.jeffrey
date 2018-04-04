@@ -1,6 +1,6 @@
 'use strict';
 
-function createCharacter(name,nickname,race,origin,attack,defense){
+function createCharacter(name,nickname,race,origin,attack,defense, weapon){
   return  {
     name:name,
     nickname: nickname,
@@ -8,8 +8,9 @@ function createCharacter(name,nickname,race,origin,attack,defense){
     origin : origin,
     attack : attack,
     defense : defense,
+    weapon: weapon,
     describe: function(){
-      return `${this.name} is a ${this.race} from ${this.origin}`;
+      return `${this.name} is a ${this.race} from ${this.origin} and uses ${weapon}`;
     },
     evaluateFight : function(character){
       let oppDmg = character.defense > this.attack ? 0 :  this.attack - character.defense ;
@@ -23,21 +24,27 @@ function createCharacter(name,nickname,race,origin,attack,defense){
 
 
 let characters = [
-  createCharacter('bilbo','baggins','hobbit','the shire',2,1),
-  createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth',10,6),
-  createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2),
-  createCharacter('Aragonrn son of Arathorn','aragorn','Man','Dunnedain',6,8),
-  createCharacter('Legolas','legolas','Elf','Woodland Realm',8,5),];
+  createCharacter('bilbo','baggins','Hobbit','the shire',2,1, 'Ring'),
+  createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth',10,6, 'Wizard Staff'),
+  createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2, 'String and Barrow Blade'),
+  createCharacter('Aragonrn son of Arathorn','aragorn','Man','Dunnedain',6,8, 'Anduril'),
+  createCharacter('Legolas','legolas','Elf','Woodland Realm',8,5, 'Bow and Arrow')];
 
 
 
 
-characters.push(createCharacter('dameon','mendoza','human','earth',100,100));
+characters.push(createCharacter('dameon','mendoza','human','earth',100,100, 'fists'));
 let foundChar = characters.find(function(character){
   return  character.nickname === 'aragorn';
 });
 
 console.log(foundChar.describe());
+
+let hobbits = characters.filter(character => character.race === 'Hobbit');
+//console.log(hobbits);
+
+let attackers = characters.filter(character => character.attack > 5);
+//console.log(attackers);
 
 
 
