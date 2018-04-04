@@ -13,4 +13,5 @@ function createObject(){
 
 
 let obj = createObject();
-console.log(obj);
+//console.log(obj);
+console.log(updateObject(obj));
